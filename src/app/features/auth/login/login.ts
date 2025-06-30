@@ -1,20 +1,47 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { AuthService } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  styleUrl: './login.scss',
+  imports: [CommonModule, FormsModule, InputTextModule, ButtonModule],
   templateUrl: './login.html',
 })
 export class Login {
-  email = '';
-  password = '';
+  form = {
+    email: '',
+    password: '',
+  };
 
-  login() {
-    console.log('Logging in con:', this.email, this.password);
-    
+  errorMessage = '';
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  onSubmit() {
+    this.errorMessage = '';
+    console.log('Login enviado:', this.form);
+
+    this.authService.login(this.form).subscribe({
+      next: (res) => {
+        console.log('Respuesta del backend:', res);
+        
+        if (res.accessToken) {
+          localStorage.setItem('token', res.accessToken);
+          localStorage.setItem('user', JSON.stringify(res.user));
+          this.router.navigate(['/register']);
+        } else {
+          this.errorMessage = 'Token no recibido.';
+        }
+      },
+      error: (err) => {
+        console.error('Error en login:', err);
+        this.errorMessage = err?.error?.message || 'Error en el servidor.';
+      },
+    });
   }
 }
