@@ -8,6 +8,9 @@ export class AuthService {
   private http = inject(HttpClient);
   private API_URL = 'http://localhost:3000'; 
 
+  verifyEmail(token: string): Observable<{ message: string }> {
+    return this.http.get<{ message: string }>(`${this.API_URL}/auth/verify-email?token=${token}`);
+  }
   register(dto: RegisterDto): Observable<any> {
     return this.http.post(`${this.API_URL}/auth/register`, dto);
   }

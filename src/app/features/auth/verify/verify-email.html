@@ -1,0 +1,14 @@
+<div class="flex justify-center items-center min-h-screen">
+  <div class="p-4 border-1 surface-border border-round shadow-2 w-full max-w-30rem text-center">
+    <h2 class="text-2xl font-semibold mb-3">Verificación de Correo</h2>
+
+    <ng-container *ngIf="loading">
+      <p>Cargando...</p>
+    </ng-container>
+
+    <ng-container *ngIf="!loading">
+      <p *ngIf="success" class="text-green-600 font-medium">{{ message }}</p>
+      <p *ngIf="!success" class="text-red-500 font-medium">{{ message }}</p>
+    </ng-container>
+  </div>
+</div>
