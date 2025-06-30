@@ -1,22 +1,46 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './register.html',
-  styleUrl: './register.scss'
+  styleUrl: './register.scss',
+  imports: [CommonModule, FormsModule, InputTextModule, ButtonModule]
 })
 export class Register {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   name = '';
   email = '';
   password = '';
   confirmPassword = '';
 
   register() {
-    console.log('Registrando:', this.name, this.email, this.password, this.confirmPassword);
-    
+    if (this.password !== this.confirmPassword) {
+      alert('Las contraseñas no coinciden');
+      return;
+    }
+
+    this.authService.register({
+      name: this.name,
+      email: this.email,
+      password: this.password,
+    }).subscribe({
+      next: (res) => {
+        alert('Registro exitoso');
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.error(err);
+        alert(err?.error?.message || 'Error al registrar');
+      }
+    });
   }
 }
