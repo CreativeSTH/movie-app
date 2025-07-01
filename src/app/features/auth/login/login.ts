@@ -2,14 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 import { AuthService } from '../../../core/services/auth';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputTextModule, ButtonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
 })
 export class Login {
@@ -33,7 +31,7 @@ export class Login {
         if (res.accessToken) {
           localStorage.setItem('token', res.accessToken);
           localStorage.setItem('user', JSON.stringify(res.user));
-          this.router.navigate(['/register']);
+          this.router.navigate(['/movies'], { replaceUrl: true });
         } else {
           this.errorMessage = 'Token no recibido.';
         }

@@ -1,35 +1,35 @@
-<div class="flex align-items-center justify-content-center min-h-screen">
-  <div class="border-round shadow-2 p-4 w-full sm:w-30rem">
-    <h2 class="text-center mb-3">Iniciar Sesión</h2>
+<div class="flex justify-content-center align-items-center min-h-screen bg-primary">
+  <div class="surface-card p-4 border-round shadow-3 w-full sm:w-30rem">
+    <h2 class="text-center text-2xl font-bold mb-4">Iniciar Sesión</h2>
 
     <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-      <div class="mb-3">
-        <label for="email" class="block mb-2">Correo</label>
+      <div class="field mb-3">
+        <label for="email" class="block mb-2 font-medium">Correo</label>
         <input
           id="email"
           type="email"
           [(ngModel)]="form.email"
           name="email"
           required
-          class="w-full p-inputtext p-2 border-1 border-round"
+          class="w-full p-2 border-1 border-300 border-round"
         />
       </div>
 
-      <div class="mb-3">
-        <label for="password" class="block mb-2">Contraseña</label>
+      <div class="field mb-3">
+        <label for="password" class="block mb-2 font-medium">Contraseña</label>
         <input
           id="password"
           type="password"
           [(ngModel)]="form.password"
           name="password"
           required
-          class="w-full p-inputtext p-2 border-1 border-round"
+          class="w-full p-2 border-1 border-300 border-round"
         />
       </div>
 
       <button
         type="submit"
-        class="w-full p-2 bg-primary text-black border-none border-round cursor-pointer"
+        class="w-full p-2 bg-primary text-white font-medium border-none border-round cursor-pointer hover:bg-primary-600 transition-colors"
       >
         Entrar
       </button>

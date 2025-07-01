@@ -17,3 +17,16 @@ export interface LoginResponse {
     email: string;
   };
 }
+
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+}
+
+export interface JwtPayload {
+  sub: string;
+  email: string;
+  iat: number;
+  exp: number;
+}

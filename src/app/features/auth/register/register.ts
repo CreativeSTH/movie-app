@@ -3,15 +3,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   templateUrl: './register.html',
   styleUrl: './register.scss',
-  imports: [CommonModule, FormsModule, InputTextModule, ButtonModule]
+  imports: [CommonModule, FormsModule]
 })
 export class Register {
   private authService = inject(AuthService);
@@ -33,7 +31,7 @@ export class Register {
       email: this.email,
       password: this.password,
     }).subscribe({
-      next: (res) => {
+      next: () => {
         alert('Registro exitoso');
         this.router.navigate(['/login']);
       },
