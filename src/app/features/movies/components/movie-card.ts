@@ -20,6 +20,12 @@ export class MovieCardComponent {
   @Output() favorite = new EventEmitter<string>();
   @Output() delete = new EventEmitter<string>();
 
+  @Output() rate = new EventEmitter<Movie>();
+
+  openRating() {
+    this.rate.emit(this.movie);
+  }
+
   onFavoriteClick() {
     this.favorite.emit(this.movie.imdbID);
   }

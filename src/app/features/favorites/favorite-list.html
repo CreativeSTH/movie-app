@@ -14,11 +14,22 @@
 
   <!-- Grid de favoritas -->
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" *ngIf="favorites().length > 0">
-    <app-movie-card
-      *ngFor="let movie of favorites()"
-      [movie]="movie"
-      [isFavoriteList]="true"
-      (delete)="removeFavorite(movie.imdbID)" 
-    />
+    <div class="relative" *ngFor="let movie of favorites()">
+      <app-movie-card
+        [movie]="movie"
+        [isFavoriteList]="true"
+        (delete)="removeFavorite(movie.imdbID)"
+        (rate)="openRatingModal($event)"
+      />
+      
+      
+      <!-- Mostrar calificación si existe -->
+      <div *ngIf="movie.rating" class="absolute top-2 left-2 bg-white bg-opacity-80 rounded px-2 py-1 text-sm shadow">
+        ⭐ {{ movie.rating }}<br />
+        <span *ngIf="movie.comment" class="italic text-xs">"{{ movie.comment }}"</span>
+      </div>
+    </div>
   </div>
 </div>
+
+

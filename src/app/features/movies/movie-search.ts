@@ -16,7 +16,7 @@ export class MovieSearchComponent {
   private movieService = inject(MovieService);
   movies = signal<Movie[]>([]);
   loading = signal<boolean>(true);
-  searchQuery = ''; // ✅ añadimos esto
+  searchQuery = ''; 
 
   ngOnInit() {
     this.loadRecentMovies();

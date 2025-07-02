@@ -13,6 +13,16 @@
   >
     <span class="material-icons text-2xl">delete</span>
   </button>
+  <!-- Botón lápiz -->
+  <button
+    *ngIf="isFavoriteList"
+    class="absolute bottom-2 right-2 text-blue-600 hover:text-blue-800 z-10"
+    title="Calificar"
+    (click)="openRating()"
+  >
+    <span class="material-icons text-xl">edit</span>
+  </button>
+
 
   <!-- Ícono de favorito si NO es la lista de favoritos -->
   <button

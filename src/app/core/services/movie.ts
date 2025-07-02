@@ -34,4 +34,12 @@ export class MovieService {
   searchMovies(title: string): Observable<Movie[]> {
   return this.http.get<Movie[]>(`${this.API_URL}/movies/search?title=${encodeURIComponent(title)}`);
   }
+
+  rateFavorite(imdbID: string, rating: number, comment: string) {
+  return this.http.post(`${this.API_URL}/favorites/rate`, {
+    imdbID,
+    rating,
+    comment
+  });
+}
 }
