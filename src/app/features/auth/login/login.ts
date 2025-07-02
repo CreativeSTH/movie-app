@@ -9,6 +9,7 @@ import { AuthService } from '../../../core/services/auth';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.html',
+  styleUrl: './login.scss',
 })
 export class Login {
   form = {

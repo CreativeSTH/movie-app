@@ -1,4 +1,4 @@
-<nav class="flex justify-between items-center p-4 bg-gray-900 text-white shadow-md">
+<nav class="w-full flex justify-content-between items-center p-4 bg-gray-900 text-white shadow-md">
   <!-- Logo y Bienvenida -->
   <div class="text-lg font-semibold">
     <span *ngIf="user()?.name; else fallback">
@@ -10,7 +10,8 @@
   </div>
 
   <!-- Botón hamburguesa para móviles -->
-  <button class="md:hidden" (click)="toggleMenu()">
+  <div>
+    <button class="md:hidden" (click)="toggleMenu()">
     <span class="material-icons text-3xl">menu</span>
   </button>
 
@@ -18,13 +19,14 @@
   <ul class="hidden md:flex gap-4 items-center">
     <li><a routerLink="/movies" class="hover:underline text-blue-800">Películas</a></li>
     <li><a routerLink="/favorites" class="hover:underline text-blue-800">Favoritos</a></li>
-    <li><button (click)="logout()" class="hover:underline text-blue-800">Cerrar sesión</button></li>
+    <li><button (click)="logout()" class=" bg-purple-800 hover:underline text-blue-800">Cerrar sesión</button></li>
   </ul>
+  <!-- Menú hamburguesa responsive -->
+</div>
 </nav>
-
-<!-- Menú hamburguesa responsive -->
 <div *ngIf="menuOpen()" class="md:hidden bg-gray-800 text-white p-4 space-y-2">
   <a routerLink="/movies" class="block" (click)="toggleMenu()">Películas</a>
   <a routerLink="/favorites" class="block" (click)="toggleMenu()">Favoritos</a>
-  <button (click)="logout()" class="block w-full text-left">Cerrar sesión</button>
+  <button (click)="logout()" class="block w-full text-left bg-purple-800">Cerrar sesión</button>
 </div>
+

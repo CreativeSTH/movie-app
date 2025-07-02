@@ -11,4 +11,9 @@ export const routes: Routes = [
     loadChildren: () => import('./features/movies/movies.routes').then(m => m.moviesRoutes),
     canActivate: [authGuard],
   },
+  {
+    path: 'favorites',
+    loadChildren: () => import('./features/favorites/favorites.routes').then(m => m.FAVORITES_ROUTES),
+    canActivate: [authGuard],
+  },
 ];

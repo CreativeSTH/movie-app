@@ -1,1 +1,24 @@
-<p>favorite-list works!</p>
+<app-navbar></app-navbar>
+<div class="p-4">
+  <h2 class="text-2xl font-bold mb-4">Mis Películas Favoritas</h2>
+
+  <!-- Spinner de carga -->
+  <div *ngIf="loading()" class="flex justify-center items-center h-40">
+    <span class="material-icons animate-spin text-3xl text-gray-500">autorenew</span>
+  </div>
+
+  <!-- Mensaje si no hay favoritas -->
+  <div *ngIf="!loading() && favorites().length === 0" class="text-center text-gray-600">
+    No tienes películas favoritas aún.
+  </div>
+
+  <!-- Grid de favoritas -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" *ngIf="favorites().length > 0">
+    <app-movie-card
+      *ngFor="let movie of favorites()"
+      [movie]="movie"
+      [isFavoriteList]="true"
+      (delete)="removeFavorite(movie.imdbID)" 
+    />
+  </div>
+</div>

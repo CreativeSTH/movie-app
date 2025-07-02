@@ -1,28 +1,24 @@
-<div class="flex justify-center items-center min-h-screen">
-  <div class="p-4 border-1 surface-border border-round shadow-2 w-full max-w-30rem text-center">
-    <h2 class="text-2xl font-semibold mb-3">Verificación de Correo</h2>
-
-    <ng-container *ngIf="loading">
-      <p>Cargando...</p>
-    </ng-container>
-
-    <ng-container *ngIf="!loading">
-      <p *ngIf="success" class="text-green-600 font-medium">{{ message }}</p>
-      <p *ngIf="!success" class="text-red-500 font-medium">{{ message }}</p>
-    </ng-container>
-  </div>
-</div>
-<div class="flex justify-content-center align-items-center min-h-screen bg-gray-100 p-4">
-  <div class="bg-white p-4 border-round shadow-2 w-full sm:w-30rem text-center">
-    <h2 class="text-2xl font-semibold mb-3">Verificación de Correo</h2>
-
-    <ng-container *ngIf="loading">
-      <p>Cargando...</p>
-    </ng-container>
-
-    <ng-container *ngIf="!loading">
-      <p *ngIf="success" class="text-green-600 font-medium">{{ message }}</p>
-      <p *ngIf="!success" class="text-red-500 font-medium">{{ message }}</p>
-    </ng-container>
+<div class="min-h-screen surface-900 relative overflow-hidden">
+  <div class="bg-pseudo flex justify-content-center align-items-center p-3">
+    <div class="p-4 shadow-2 blur-card text-center w-full sm:w-30rem">
+      <h2 class="text-2xl font-semibold mb-3">Verificación de Correo</h2>
+  
+      <ng-container *ngIf="loading">
+        <p>Cargando...</p>
+      </ng-container>
+  
+      <ng-container *ngIf="!loading">
+        <p *ngIf="success" class="text-white-600 font-medium">{{ message }}</p>
+        <p *ngIf="!success" class="text-white-500 font-medium">{{ message }}</p>
+        <p *ngIf="success" class="text-center text-sm mt-3">
+          ¿Empezamos?
+          <a routerLink="" class="text-primary font-medium">Inicia sesión</a>
+        </p>
+        <p *ngIf="!success" class="text-center text-sm mt-3">
+          ¿Problemas con le token?
+          <a routerLink="" class="text-primary font-medium">Volver a enviar correo</a>
+        </p>
+      </ng-container>
+    </div>
   </div>
 </div>

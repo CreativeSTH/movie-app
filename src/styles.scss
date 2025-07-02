@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+*, *::after, *::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+  --primary-font: "Nunito Sans", sans-serif;
+  --secondary-font: "Passion One", sans-serif;
+  --special-font: "Rock Salt", cursive;
+}
+
+body{
+    font-family: var(--primary-font);
+}
+
+.blur-card{
+    min-height: 100vdh;
+    width: 100%;
+    position:relative;
+    background: rgba(0, 102, 255, 0.014); 
+    border-radius: 15px; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white; 
+    z-index: 3;
+}
+.blur-input{
+    background-color: #fffbf62b;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}

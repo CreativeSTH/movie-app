@@ -8,6 +8,7 @@ import { AuthService } from '../../../core/services/auth';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './verify-email.html',
+  styleUrl: './verify-email.scss',
 })
 export class VerifyEmail implements OnInit {
   message = '';

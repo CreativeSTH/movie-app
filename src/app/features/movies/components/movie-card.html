@@ -1,0 +1,26 @@
+<div class="relative shadow-md rounded overflow-hidden bg-white p-3">
+  <img [src]="movie.Poster" alt="{{ movie.Title }}" class="w-full rounded mb-2" />
+  <h3 class="text-lg font-semibold mb-1">{{ movie.Title }}</h3>
+  <p class="text-sm text-gray-700">Año: {{ movie.Year }}</p>
+  <p class="text-sm text-gray-700 mb-2">Tipo: {{ movie.Type }}</p>
+
+  <!-- Ícono de eliminar si está en la lista de favoritos -->
+  <button
+    *ngIf="isFavoriteList"
+    class="absolute top-2 right-2 text-gray-600 hover:text-red-600"
+    (click)="onDeleteClick()"
+    title="Eliminar de favoritos"
+  >
+    <span class="material-icons text-2xl">delete</span>
+  </button>
+
+  <!-- Ícono de favorito si NO es la lista de favoritos -->
+  <button
+    *ngIf="!isFavoriteList && showFavorite"
+    class="absolute top-2 right-2 text-red-500 hover:text-red-600"
+    (click)="onFavoriteClick()"
+    title="Agregar a favoritos"
+  >
+    <span class="material-icons text-2xl">favorite_border</span>
+  </button>
+</div>

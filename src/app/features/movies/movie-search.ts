@@ -2,12 +2,13 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MovieService } from '../../../app/core/services/movie';
 import { Movie } from '../../models/movie';
-import { NavbarComponent } from '../navbar/navbar'
+import { NavbarComponent } from '../navbar/navbar';
+import { MovieCardComponent } from '../movies/components/movie-card';
 
 @Component({
   selector: 'app-movie-search',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, NavbarComponent, MovieCardComponent],
   templateUrl: './movie-search.html',
 })
 export class MovieSearchComponent {
