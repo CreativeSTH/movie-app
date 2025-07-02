@@ -1,5 +1,14 @@
 <app-navbar></app-navbar>
 <div class="p-4">
+  <input
+    [(ngModel)]="searchQuery"
+    (keyup.enter)="search()"
+    type="text"
+    placeholder="Buscar película..."
+    class="w-full p-2 border rounded mb-4"
+  />
+</div>
+<div class="p-4">
   <h2 class="text-2xl font-bold mb-4">Películas recientes</h2>
 
   <!-- Spinner de carga -->

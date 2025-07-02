@@ -30,4 +30,8 @@ export class MovieService {
   removeFavorite(imdbID: string): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/favorites/${imdbID}`, this.headers);
   }
+
+  searchMovies(title: string): Observable<Movie[]> {
+  return this.http.get<Movie[]>(`${this.API_URL}/movies/search?title=${encodeURIComponent(title)}`);
+  }
 }
