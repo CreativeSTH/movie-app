@@ -16,10 +16,10 @@
   </button>
 
   <!-- Menú en desktop -->
-  <ul class="hidden md:flex gap-4 items-center">
-    <li><a routerLink="/movies" class="hover:underline text-blue-800">Películas</a></li>
-    <li><a routerLink="/favorites" class="hover:underline text-blue-800">Favoritos</a></li>
-    <li><button (click)="logout()" class=" bg-purple-800 hover:underline text-blue-800">Cerrar sesión</button></li>
+  <ul class="hidden list-none md:flex gap-4 items-center">
+    <li><a routerLink="/movies" class="hover:underline no-underline text-white text-blue-800">Películas</a></li>
+    <li><a routerLink="/favorites" class="hover:underline no-underline text-white text-blue-800">Favoritos</a></li>
+    <li><button (click)="logout()" class=" bg-purple-800 hover:underline text-white btn-close border-round-xl border-none">Cerrar sesión</button></li>
   </ul>
   <!-- Menú hamburguesa responsive -->
 </div>

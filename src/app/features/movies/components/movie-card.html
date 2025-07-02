@@ -1,36 +1,39 @@
-<div class="relative shadow-md rounded overflow-hidden bg-white p-3">
-  <img [src]="movie.Poster" alt="{{ movie.Title }}" class="w-full rounded mb-2" />
+<div class="relative shadow-md rounded overflow-hidden p-2">
+  <img [src]="movie.Poster" alt="{{ movie.Title }}" class="img-movie" />
   <h3 class="text-lg font-semibold mb-1">{{ movie.Title }}</h3>
   <p class="text-sm text-gray-700">Año: {{ movie.Year }}</p>
   <p class="text-sm text-gray-700 mb-2">Tipo: {{ movie.Type }}</p>
 
   <!-- Ícono de eliminar si está en la lista de favoritos -->
-  <button
+  <div class="favorite-buttons absolute">
+    <button
     *ngIf="isFavoriteList"
-    class="absolute top-2 right-2 text-gray-600 hover:text-red-600"
+    class="favorite-icons text-gray-600 hover:text-red-600 border-none bg-none border-none"
     (click)="onDeleteClick()"
     title="Eliminar de favoritos"
   >
     <span class="material-icons text-2xl">delete</span>
-  </button>
-  <!-- Botón lápiz -->
-  <button
-    *ngIf="isFavoriteList"
-    class="absolute bottom-2 right-2 text-blue-600 hover:text-blue-800 z-10"
-    title="Calificar"
-    (click)="openRating()"
-  >
-    <span class="material-icons text-xl">edit</span>
-  </button>
+    </button>
+    <!-- Botón lápiz -->
+    <button
+      *ngIf="isFavoriteList"
+      class="ml-2 favorite-icons text-gray-600 hover:text-blue-600 border-none bg-none"
+      title="Calificar"
+      (click)="openRating()"
+    >
+      <span class="material-icons bg-none text-2xl">edit</span>
+    </button>
+  
 
 
   <!-- Ícono de favorito si NO es la lista de favoritos -->
   <button
     *ngIf="!isFavoriteList && showFavorite"
-    class="absolute top-2 right-2 text-red-500 hover:text-red-600"
+    class="favorite-icons text-gray-600 hover:text-red-600 border-none bg-none border-none"
     (click)="onFavoriteClick()"
     title="Agregar a favoritos"
   >
     <span class="material-icons text-2xl">favorite_border</span>
   </button>
+  </div>
 </div>

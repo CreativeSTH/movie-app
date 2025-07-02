@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 
 @Component({
@@ -9,7 +9,7 @@ import { AuthService } from '../../../core/services/auth';
   standalone: true,
   templateUrl: './register.html',
   styleUrl: './register.scss',
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, RouterModule]
 })
 export class Register {
   private authService = inject(AuthService);
