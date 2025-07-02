@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth';
+import { showToast } from '../../../utils/toast';
 
 @Component({
   selector: 'app-login',
@@ -32,14 +33,15 @@ export class Login {
         if (res.accessToken) {
           localStorage.setItem('token', res.accessToken);
           localStorage.setItem('user', JSON.stringify(res.user));
+          showToast('Bienvenido', 'success');
           this.router.navigate(['/movies'], { replaceUrl: true });
         } else {
           this.errorMessage = 'Token no recibido.';
         }
       },
       error: (err) => {
-        console.error('Error en login:', err);
-        this.errorMessage = err?.error?.message || 'Error en el servidor.';
+        const msg = err.error?.message || 'Error al iniciar sesión';
+        showToast(msg, 'error');
       },
     });
   }

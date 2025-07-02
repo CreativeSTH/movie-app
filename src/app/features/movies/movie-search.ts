@@ -5,6 +5,7 @@ import { Movie } from '../../models/movie';
 import { NavbarComponent } from '../navbar/navbar';
 import { MovieCardComponent } from '../movies/components/movie-card';
 import { FormsModule } from '@angular/forms';
+import { showToast } from '../../utils/toast';
 
 @Component({
   selector: 'app-movie-search',
@@ -53,8 +54,8 @@ export class MovieSearchComponent {
 
   addToFavorites(imdbID: string) {
     this.movieService.addToFavorites(imdbID).subscribe({
-      next: () => alert('Agregada a favoritos'),
-      error: () => alert('Error al agregar a favoritos')
+      next: () => showToast('Agergado a Favorito', 'success'),
+      error: () => showToast('Error al agregar a favoritos', 'error')
     });
   }
 }

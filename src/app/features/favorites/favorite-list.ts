@@ -8,6 +8,7 @@ import { NavbarComponent } from '../navbar/navbar';
 import { MovieService } from '../../core/services/movie';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { showToast } from '../../utils/toast';
 
 type FavoriteMovie = Movie & { rating?: number; comment?: string };
 
@@ -56,6 +57,7 @@ export class FavoriteListComponent implements OnInit {
     this.movieService.removeFavorite(imdbID).subscribe({
       next: () => {
         this.favorites.update(favs => favs.filter(f => f.imdbID !== imdbID));
+        showToast('Favorito eliminado', 'success');
       },
       error: (err) => console.error('Error al eliminar favorito', err)
     });

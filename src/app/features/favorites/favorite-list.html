@@ -24,7 +24,7 @@
       
       
       <!-- Mostrar calificación si existe -->
-      <div *ngIf="movie.rating" class="absolute top-2 left-2 bg-white bg-opacity-80 rounded px-2 py-1 text-sm shadow">
+      <div *ngIf="movie.rating" class="bg-white bg-opacity-80 rounded px-2 py-1 text-sm shadow">
         ⭐ {{ movie.rating }}<br />
         <span *ngIf="movie.comment" class="italic text-xs">"{{ movie.comment }}"</span>
       </div>

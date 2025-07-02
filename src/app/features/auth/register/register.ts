@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
+import { showToast } from '../../../utils/toast';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,7 @@ export class Register {
 
   register() {
     if (this.password !== this.confirmPassword) {
-      alert('Las contraseñas no coinciden');
+       showToast('Las contraseñas no coinciden', 'error');
       return;
     }
 
@@ -32,12 +33,12 @@ export class Register {
       password: this.password,
     }).subscribe({
       next: () => {
-        alert('Registro exitoso');
+        showToast('Registro exitoso', 'success');
         this.router.navigate(['/login']);
       },
       error: (err) => {
         console.error(err);
-        alert(err?.error?.message || 'Error al registrar');
+        showToast(err?.error?.message || 'Error al registrar', 'error');
       }
     });
   }
