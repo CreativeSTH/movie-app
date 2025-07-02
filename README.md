@@ -1,59 +1,142 @@
-# MovieApp
+# 🎬 MovieApp Frontend – (Angular 20 Standalone)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.4.
+Aplicación frontend desarrollada con **Angular 20** en modo **standalone**, como parte de una prueba técnica. Permite a los usuarios registrarse, iniciar sesión, buscar películas usando la OMDb API (vía backend propio en NestJS), guardar favoritas y calificarlas.
 
-## Development server
+Utilicé Angular 20 sin NgModules para aprovechar la nueva arquitectura más modular, ligera y moderna.
 
-To start a local development server, run:
+Para mostrar notificaciones visuales amigables al usuario, utilicé SweetAlert2 con configuración toast: true, mejorando la experiencia de usuario en errores y confirmaciones.
+
+La interfaz se adaptó a múltiples tamaños de pantalla. Se usaron utilidades de PrimeFlex y algunos componentes de Angular Material para una experiencia fluida y moderna.
+
+Por último algunas librerías fueron instaladas con --force o --legacy-peer-deps debido a conflictos de versiones al usar Angular 20. Esto se documentó en el README como una consideración importante para levantar el entorno correctamente.
+
+---
+
+## 🚀 Tecnologías utilizadas
+
+- ✅ **Angular 20 Standalone**
+- ✅ **TypeScript 5+**
+- ✅ **PrimeFlex** (para diseño responsivo)
+- ✅ **SweetAlert2** (toasts y alertas)
+- ✅ **Angular Material**
+- ✅ **Forms Standalone (template-driven)**
+- ✅ **Rutas protegidas con AuthGuard**
+- ✅ **Consumo de API REST NestJS personalizada**
+- ✅ **CSS moderno y diseño responsive**
+
+---
+
+## 🔧 Instalación y configuración
+
+### 📦 Requisitos previos
+
+- Node.js **v18+**
+- Angular CLI global:
+
+```bash
+npm install -g @angular/cli
+```
+
+> 💡 Esta app fue desarrollada en Angular **v20**, algunas dependencias fueron instaladas usando `--force` o `--legacy-peer-deps` para resolver conflictos de versiones. Si ves advertencias, puedes continuar.
+
+---
+
+## ▶️ Instrucciones para levantar el proyecto
+
+1. Clona el repositorio:
+
+```bash
+git clone https://github.com/tu-usuario/movieapp-frontend.git
+cd movieapp-frontend
+```
+
+2. Instala las dependencias (en caso de errores usa `--force`):
+
+```bash
+npm install --force
+# o
+npm install --legacy-peer-deps
+```
+
+3. Configura la URL del backend:
+
+```ts
+// src/core/services.ts
+
+aprivate API_URL: 'http://localhost:3000', // Backend propio en NestJS
+
+```
+
+4. Ejecuta la app:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Accede desde: [http://localhost:4200](http://localhost:4200)
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🌐 Backend requerido
 
-```bash
-ng generate component component-name
-```
+Este frontend depende de una API propia desarrollada con **NestJS** que incluye:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Autenticación JWT
+- Login por contraseña
+- Registro con verificación de correo electrónico
+- Reenvío de correo de verificación
+- Endpoints RESTful:
+  - POST `/auth/register`
+  - GET `/auth/verify-email?token`
+  - POST `/auth/resend-verification`
+  - POST `/auth/login`
+  - POST `/auth/logout`
+  - GET `/movies/search?title`
+  - GET `/movies/search?title`
+  - POST `/favorites`
+  - GET `/favorites`
+  - DEL `/favorites/id`
+  - POST `/favorites/rate`
 
-```bash
-ng generate --help
-```
+> 🧠 El backend también utiliza MongoDB (Atlas) y OMDb API como fuente externa de películas.
 
-## Building
+---
 
-To build the project run:
+## 🧠 Funcionalidades implementadas
 
-```bash
-ng build
-```
+### 👥 Autenticación
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Registro con verificación por email
+- Reenvio del email
+- Inicio de sesión con contraseña
+- Middleware de autorización con JWT
+- Notificaciones visuales con **SweetAlert2 (toast)**
 
-## Running unit tests
+### 🎬 Películas
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Búsqueda de películas por año
+- Visual tipo Netflix con tarjetas
+- Agregar/eliminar favoritos
+- Calificar películas (puntuación + comentario)
+- Mostrar calificación actual de cada favorito
 
-```bash
-ng test
-```
+### 🔐 Seguridad y UX
 
-## Running end-to-end tests
+- Rutas protegidas con `AuthGuard`
+- Manejo de errores visual (SweetAlert2)
+- Validación de formularios
+- Cierre de sesión y expiración segura del token
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 👨‍💻 Autor
 
-## Additional Resources
+**Sebastian Torres Herrera**  
+[LinkedIn](https://www.linkedin.com/in/sebastian-torres-herrera-game-development/)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+## 📃 Licencia
+
+MIT
