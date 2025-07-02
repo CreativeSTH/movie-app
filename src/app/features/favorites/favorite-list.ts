@@ -5,6 +5,7 @@ import { AuthService } from '../../core/services/auth';
 import { MovieCardComponent } from '../movies/components/movie-card';
 import { Movie } from '../../models/movie';
 import { NavbarComponent } from '../navbar/navbar';
+import { MovieService } from '../../core/services/movie';
 
 @Component({
   selector: 'app-favorites',
@@ -14,6 +15,7 @@ import { NavbarComponent } from '../navbar/navbar';
   styleUrl: './favorite-list.scss'
 })
 export class FavoriteListComponent implements OnInit {
+  private movieService = inject(MovieService);
   private http = inject(HttpClient);
   private auth = inject(AuthService);
 
@@ -25,26 +27,29 @@ export class FavoriteListComponent implements OnInit {
   }
 
   loadFavorites() {
-    const token = this.auth.getToken();
-    this.http.get<Movie[]>('/api/favorites', {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).subscribe({
-      next: (res) => {
-        this.favorites.set(res);
-        this.loading.set(false);
-      },
-      error: (err) => {
-        console.error('Error al obtener favoritos', err);
-        this.loading.set(false);
-      }
-    });
-  }
+  this.movieService.getFavorites().subscribe({
+    next: (res: any[]) => {
+      console.log('Favoritos desde el backend:', res);
+      const mapped = res.map(fav => ({
+        imdbID: fav.imdbID,
+        Title: fav.title,
+        Year: fav.year,
+        Type: 'movie',
+        Poster: fav.poster
+      }));
+      this.favorites.set(mapped);
+      this.loading.set(false);
+    },
+    error: (err) => {
+      console.error('Error al obtener favoritos', err);
+      this.loading.set(false);
+    }
+  });
+}
+
 
   removeFavorite(imdbID: string) {
-    const token = this.auth.getToken();
-    this.http.delete(`/api/favorites/${imdbID}`, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).subscribe({
+    this.movieService.removeFavorite(imdbID).subscribe({
       next: () => {
         this.favorites.update(favs => favs.filter(f => f.imdbID !== imdbID));
       },

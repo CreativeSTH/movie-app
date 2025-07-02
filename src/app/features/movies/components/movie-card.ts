@@ -15,7 +15,7 @@ export class MovieCardComponent {
   @Input() showFavorite = true;
   @Input() showDelete = false;
 
-  @Input() isFavoriteList = false; // ✅ añadido
+  @Input() isFavoriteList = false; 
 
   @Output() favorite = new EventEmitter<string>();
   @Output() delete = new EventEmitter<string>();
